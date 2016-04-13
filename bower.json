@@ -1,0 +1,27 @@
+{
+  "name": "videohub-player",
+  "description": "Onion videohub player code.",
+  "main": "dist/videohub-player.js",
+  "authors": [
+    "Collin Miller (Zardulist) <collintmiller@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "videojs": "4.12.15",
+    "videojs-ga": "mickey/videojs-ga#9ee5803c",
+    "videojs-autoplay-toggle": "1.0.6",
+    "videojs-youtube": "~1.2.11",
+    "videojs-vp-plugin": "http://cdn.videoplaza.tv/resources/html5/bc_perform/vpbc_1.6.9.js",
+    "succinct": "^1.1.0",
+    "isMobile": "^0.4.0"
+  }
+}

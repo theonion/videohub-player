@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+node_modules/.bin/webpack \
+  --minimize-optimize \
+  --bail \
+  --progress \
+  --devtool sourcemap \
+  --colors

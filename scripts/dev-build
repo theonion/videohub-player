@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+node_modules/.bin/webpack \
+  --display-modules \
+  --bail \
+  --colors \
+  --watch \
+  --devtool eval \
