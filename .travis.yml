@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-- '5.1'
-- '5.9'
+- '5.10'
 sudo: false
 before_script:
 - npm install -g bower
@@ -14,6 +13,9 @@ cache:
   - node_modules
   - bower_components
 env:
+  matrix:
+    - BROWSER=bs_chrome47
+    - BROWSER=bs_firefox_43
   global:
   - secure: WgEd6r56UEod5V6XMtybt2e+sOPBO3ad4bKIaMhETrJ6Mbb8uDnlAqvzjMIus7fmXelnJ3KT6MXlDbrV9AoQC7z23UZQ/aVx3uxFV4NJVxaB1gmC3FWd6UCRObKnFv8cO/l978ysiRbZyLqFg0AJjKK9TS0MlEfMt6MO6kokg8J6mBi9z0UJGjxVH3WyggeS74V2nbI6N+is1IGA3FcREipEKg939pmH0Ap9ryJo5TLCRYIsqEBOw3ZGKIzeXzjXgKjoMJIKXTn9iI6TwRtapMVg4zHCIehoSkI3iJCQM9gVCmgeG/clepGP8X6l6fI/hVt13DzJkG7h9QSitkwE8lWkmzGLbrIFggzdquooNuVIadufEIEd+LIa/n+UOIbsqhbGQf54dPeJqJ6AHNEKRmnX0wFiBXbZIHiA8URktAs2g9hZLC/CUeQNeqxAarRLfCVzw8MfLv0+kwVu3bjiKglibMplRsY+4ymAtQv3u9L4Xl4E1qo3ZyQXAdE4J62foEspRw7gsNowRpdNqB8kjv8jeRFn5NwLk90KxbIMpMd5hhr1A7C+kLyXtGqScrgiChpVr2YotsnNTek5T2VNhXHfi6Xdvze1/07GrA4w3SkNnLfmjEvwEgDp23G8S1+3RgY4RBbERnQYkPz35xwNsC8JEaDy7xegglgxx0X8U6s=
   - secure: I73GTGljxOciHxosGybdN3/tZigz/iDYTdMUGfPwBcXdX5r1O/44THYj+IWTVoCgoHD6RMMPmTQ9PjVWLaw77yrCBYLq9Lcn584Sh02ig6WJXGX5FHTNlC0LJ1Xhc4gwexb01yV+0ZJA+ojxOCi2bkzfm1Lh/w4ihoP/0kgMtXScDxyvZhzduawJ27V7tiN5l65NB029vhqmrTy9Zyt5pf+td+rxAx/AIg5OQJt5jjlOwwXK77220O5BVFv9+EIsOFJuFExMFzKCpzzKS2zVVABAXKfHFhefgy6+2cWYsZaU6y+b6oHELwgRKxJyli1vEzSRFCgmmMRaWeywvOpmmRfIVlBrdpIW4CLzqdDOi6yxjLtPXTGAlACLq7GcxM827ic4rnPjREVokzfnUukCWqi0ZnGS4DigKFiQjjXoAM7l5p3byZ5jwgxJUhHABAYQIr9j/Ts5H/3dRdBLq5TZa9/49YqFWmnBrcqn3MaegHnoj9HbP2VAUY9BSll1+7AK6N4PkwCr44RriEiyV1Ht20jVsBZEMfPhcXCaQ0mY+MUEOXL4tZOSMR9MsPjcrs4YurMu/vK/XdwTmX6DuvWcuHchuB2z/IRDrr+PET8sfJNTSOd/unRcp9PJ8FUZfdRZOQRI9gBLLGgj1fcZ5x1yGkr4OgGT1oOr5msnedFq80k=

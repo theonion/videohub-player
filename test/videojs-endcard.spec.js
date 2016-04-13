@@ -1,4 +1,4 @@
-var $ = require('jQuery');
+var $ = require('jquery');
 var sinon = require('sinon');
 var expect = require('chai').expect;
 var TestHelper = require('./support/test_helper');
