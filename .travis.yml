@@ -14,7 +14,7 @@ cache:
   - bower_components
 env:
   matrix:
-    - BROWSER=bs_chrome47
+    - BROWSER=bs_chrome_47
     - BROWSER=bs_firefox_43
     - BROWSER=bs_safari_8
     - BROWSER=bs_ie_11
