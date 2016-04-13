@@ -97,8 +97,8 @@ karmaConfig.browsers = [
   //'bs_ie_10',
   //'bs_ie_11',
   //'bs_safari_8',
-  //'bs_chrome_47',
-  'bs_firefox_43',
+  'bs_chrome_47',
+  //'bs_firefox_43',
 ];
 module.exports = function(config) {
   // level of logging
