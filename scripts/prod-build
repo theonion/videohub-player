@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 node_modules/.bin/webpack \
-  --minimize-optimize \
+  -p \
+  --display-modules \
+  --bail \
+  --progress \
+  --devtool sourcemap \
+  --colors
+
+IN_IFRAME=true node_modules/.bin/webpack \
+  -p \
+  --output-filename=iframe-videohub-player.js \
+  --display-modules \
   --bail \
   --progress \
   --devtool sourcemap \
