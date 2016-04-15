@@ -2,7 +2,7 @@
   "name": "videohub-player",
   "version": "0.1.0",
   "description": "Onion videohub player code.",
-  "main": "index.js",
+  "main": "src/player.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack"
@@ -25,6 +25,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "onionsay": "github:theonion/onionsay",
     "sinon": "^2.0.0-pre",
     "webpack": "^1.12.14"
   }

@@ -7,7 +7,7 @@
   ],
   "license": "ISC",
   "moduleType": [],
-  "homepage": "",
+  "homepage": "https://github.com/theonion/videohub-player",
   "ignore": [
     "**/.*",
     "node_modules",
