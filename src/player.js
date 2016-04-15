@@ -1,4 +1,4 @@
-require('jquery/dist/jquery');
+//require('jquery/dist/jquery');
 require('succinct/jQuery.succinct');
 require('isMobile/isMobile');
 require('videojs-vp-plugin/index');
@@ -179,10 +179,9 @@ VideoPlayer.prototype.playerReady = function() {
   this.setupCustomAnalyticsPlugin();
   this.setupGoogleAnalyticsPlugin();
 
-  if (process.env.IN_IFRAME) {
-    if (this.settings.embed) {
-      this.sendParentPlayerEvents();
-    }
+  // We are in a transition from <iframe> to <bulbs-video> embeds
+  if (this.settings.embed) {
+    this.sendParentPlayerEvents();
     this.initMessageEventListeners();
   }
 
@@ -215,7 +214,8 @@ VideoPlayer.prototype.initPlayerEventListeners = function() {
     that.ignoreAutoplay = true;
   });
 
-  if (process.env.IN_IFRAME) {
+  // We are in a transition from <iframe> to <bulbs-video> embeds
+  if (this.settings.embed) {
     this.player.on('dispose', function() {
       if (that.messageHandler) {
         window.removeEventListener('message', that.messageHandler);
@@ -317,7 +317,8 @@ VideoPlayer.prototype.handleMessagePlayWeak = function() {
   }
 };
 
-if (process.env.IN_IFRAME) {
+
+// These are relevant to <iframe> embeds, not <bulbs-video> embeds
   VideoPlayer.prototype.initMessageEventListeners = function() {
     var player = this.player;
 
@@ -355,6 +356,6 @@ if (process.env.IN_IFRAME) {
       window.parent.postMessage({name: 'video-replay'}, '*');
     });
   };
-}
+// END of <iframe> relevant methods.
 
 module.exports = VideoPlayer;

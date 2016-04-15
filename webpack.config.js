@@ -8,13 +8,7 @@ module.exports = {
     filename: 'videohub-player.js',
   },
   plugins: [
-    new webpack.EnvironmentPlugin([
-      'IN_IFRAME',
-    ]),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
       isMobile: 'isMobile',
       'window.isMobile': 'isMobile',
     }), 

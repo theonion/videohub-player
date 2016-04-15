@@ -1,3 +1,2 @@
 #!/usr/bin/env bash -e
 ./node_modules/.bin/karma start karma.devicelab.js --single-run
-IN_IFRAME=true ./node_modules/.bin/karma start karma.devicelab.js --single-run

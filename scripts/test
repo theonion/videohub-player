@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-node_modules/.bin/karma start --single-run
-IN_IFRAME=true node_modules/.bin/karma start --single-run
+node_modules/.bin/karma start

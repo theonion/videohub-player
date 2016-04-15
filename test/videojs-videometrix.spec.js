@@ -20,7 +20,7 @@ describe('VideoMetrix', function() {
 
   describe('defaults', function() {
     beforeEach(function() {
-      TestHelper.stub(console, 'error');
+      TestHelper.stub(console, 'warn');
       TestHelper.stub(ns_, 'StreamingTag');
       videoMetrix = new VideoMetrix(player, {});
     });
@@ -29,8 +29,8 @@ describe('VideoMetrix', function() {
       expect(ns_.StreamingTag.called).to.be.false;
     });
 
-    it('throws an error if there is no ID passed in ', function() {
-      expect(console.error.called).to.be.true;
+    it('emits a warning if there is no ID passed in ', function() {
+      expect(console.warn.called).to.be.true;
     });
   });
 

@@ -380,14 +380,12 @@ describe('VideoPlayer', function() {
       expect(videoPlayer.setupCustomAnalyticsPlugin.called).to.be.true;
     });
 
-    if (process.env.IN_IFRAME) {
-      it('sets up the parent player events if it is an embedded player', function() {
-        TestHelper.stub(videoPlayer, 'sendParentPlayerEvents');
-        videoPlayer.settings.embed = true;
-        videoPlayer.playerReady();
-        expect(videoPlayer.sendParentPlayerEvents.called).to.be.true;
-      });
-    }
+    it('sets up the parent player events if it is an embedded player', function() {
+      TestHelper.stub(videoPlayer, 'sendParentPlayerEvents');
+      videoPlayer.settings.embed = true;
+      videoPlayer.playerReady();
+      expect(videoPlayer.sendParentPlayerEvents.called).to.be.true;
+    });
 
     it('initiailzes player event listeners', function() {
       TestHelper.stub(videoPlayer, 'initPlayerEventListeners');
@@ -397,40 +395,39 @@ describe('VideoPlayer', function() {
 
     it('initializes message event listeners', function() {
       TestHelper.stub(videoPlayer, 'initMessageEventListeners');
+      videoPlayer.settings.embed = true;
       videoPlayer.playerReady();
       expect(videoPlayer.initMessageEventListeners.called).to.be.true;
     });
   });
 
-  if (process.env.IN_IFRAME) {
-    describe('#sendParentPlayerEvents', function() {
-      beforeEach(function() {
-        console.log(process.env);
-        videoPlayer = new VideoPlayer(videoDiv, {
-          videoId: 3237
-        });
-        window.parent = {
-          postMessage: sinon.stub()
-        };
-        videoPlayer.sendParentPlayerEvents();
+  describe('#sendParentPlayerEvents', function() {
+    beforeEach(function() {
+      console.log(process.env);
+      videoPlayer = new VideoPlayer(videoDiv, {
+        videoId: 3237
       });
-
-      it('posts message to the parent on play', function() {
-        videoPlayer.player.trigger('play');
-        expect(window.parent.postMessage.calledWith({ name: 'video-play'}, '*')).to.be.true;
-      });
-
-      it('posts message to the parent on pause', function() {
-        videoPlayer.player.trigger('pause');
-        expect(window.parent.postMessage.calledWith({ name: 'video-pause'}, '*')).to.be.true;
-      });
-
-      it('posts message to the parent on replay', function() {
-        videoPlayer.player.trigger('replay');
-        expect(window.parent.postMessage.calledWith({ name: 'video-replay'}, '*')).to.be.true;
-      });
+      window.parent = {
+        postMessage: sinon.stub()
+      };
+      videoPlayer.sendParentPlayerEvents();
     });
-  }
+
+    it('posts message to the parent on play', function() {
+      videoPlayer.player.trigger('play');
+      expect(window.parent.postMessage.calledWith({ name: 'video-play'}, '*')).to.be.true;
+    });
+
+    it('posts message to the parent on pause', function() {
+      videoPlayer.player.trigger('pause');
+      expect(window.parent.postMessage.calledWith({ name: 'video-pause'}, '*')).to.be.true;
+    });
+
+    it('posts message to the parent on replay', function() {
+      videoPlayer.player.trigger('replay');
+      expect(window.parent.postMessage.calledWith({ name: 'video-replay'}, '*')).to.be.true;
+    });
+  });
 
   describe('#initPlayerEventListeners', function() {
     beforeEach(function() {

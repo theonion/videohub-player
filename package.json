@@ -9,13 +9,12 @@
   },
   "author": "",
   "license": "Copyright 2016 Onion, INC",
-  "dependencies": {
-    "jquery": "^2.2.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "bower-webpack-plugin": "^0.1.9",
     "chai": "^3.5.0",
     "karma": "^0.13.22",
+    "karma-bower": "^1.0.1",
     "karma-browserstack-launcher": "^0.1.11",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.3",
