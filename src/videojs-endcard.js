@@ -1,5 +1,5 @@
 var videojs = require('video.js');
-var $ = require('jQuery');
+var $ = require('jquery');
 
 var EndCard = function(player, options) {
   this.player = player;
