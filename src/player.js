@@ -175,7 +175,7 @@ VideoPlayer.prototype.playerReady = function() {
   var player = this.player;
 
   if (this.settings.mute) {
-    player.volume(0);
+    player.muted(true);
   }
 
   if (isMobile.any) {

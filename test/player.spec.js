@@ -353,10 +353,9 @@ describe('VideoPlayer', function() {
     });
 
     it('mutes the player if mute is enabled', function() {
-      videoPlayer.player.volume(1);
       videoPlayer.settings.mute = true;
       videoPlayer.playerReady();
-      expect(videoPlayer.player.volume()).to.equal(0);
+      expect(videoPlayer.player.muted()).to.be.true;
     });
 
     it('hides the controlBar if mobile device', function() {
