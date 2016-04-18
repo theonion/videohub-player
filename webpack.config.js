@@ -7,7 +7,7 @@ module.exports = {
     path: './dist',
     filename: 'videohub-player.js',
     libraryTarget: 'this',
-    library: 'VideohubPlayer',
+    library: 'VideoPlayer',
   },
   plugins: [
     new webpack.ProvidePlugin({
