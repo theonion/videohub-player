@@ -1,6 +1,5 @@
 var sinon = require('sinon');
 var expect = require('chai').expect;
-var videojs = require('video.js');
 var TestHelper = require('./support/test_helper');
 var VideoPlayer = require('../src/player');
 
@@ -403,7 +402,6 @@ describe('VideoPlayer', function() {
 
   describe('#sendParentPlayerEvents', function() {
     beforeEach(function() {
-      console.log(process.env);
       videoPlayer = new VideoPlayer(videoDiv, {
         videoId: 3237
       });

@@ -64,6 +64,7 @@ module.exports = {
 
     bowerPackages: [
       'jquery',
+      'video.js',
     ],
 
     // Continuous Integration mode

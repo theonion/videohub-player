@@ -1,12 +1,18 @@
-//require('jquery/dist/jquery');
+// TODO: We're requiring these libraries, but not doing
+//       anything with them in-place. Further, these libraries
+//       expect to find jQuery and videojs globally. This
+//       might be a bad thing.
+// Load up jQuery plugins
 require('succinct/jQuery.succinct');
 require('isMobile/isMobile');
+
+// Load up all our videojs plugins;
 require('videojs-vp-plugin/index');
 require('videojs-autoplay-toggle/videojs.autoplay-toggle');
 require('videojs-ga/dist/videojs.ga.js');
+require('videojs-autoplay-toggle/videojs.autoplay-toggle.js');
 
-var videojs = require('video.js');
-
+// Requires our own code
 require('./utils/swfobject');
 require('./loaded_metadata');
 require('./sharetools');

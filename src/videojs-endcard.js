@@ -1,5 +1,3 @@
-var videojs = require('video.js');
-
 var EndCard = function(player, options) {
   this.player = player;
   this.videoEnded = this.videoEnded.bind(this);

@@ -12,9 +12,12 @@ This repository is that place.
 Long-term, the plan is for `videohub` to use `<bulbs-video>` internally
 and then all the code in this project can fold directly into `bulbs-elements`.
 
-## ENV VARS
+## Installation
 
-`IN_IFRAME`: During this transition, 
+This library expects some dependencies to exist globally.
+
+* `jQuery`: We're using `2.2.x`
+* `video.js`: MUST be `video.js/dist/video-js/video.dev.js` @ `4.12.x` 
 
 ## Scripts #############
 

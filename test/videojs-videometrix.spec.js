@@ -1,6 +1,5 @@
 var sinon = require('sinon');
 var expect = require('chai').expect;
-var videojs = require('video.js');
 var TestHelper = require('./support/test_helper');
 var VideoMetrix = require('../src/videojs-videometrix');
 
