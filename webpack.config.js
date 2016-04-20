@@ -3,7 +3,8 @@ var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
   entry: {
-    'videohub-player': './src/player.js',
+    'videohub-player': './src/export-module.js',
+    'videohub-player-global': './src/export-global.js',
   },
   output: {
     path: './dist',

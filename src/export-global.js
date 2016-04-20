@@ -1,0 +1,1 @@
+this.VideoPlayer = require('./player');
