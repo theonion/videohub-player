@@ -1,3 +1,4 @@
+var videojs = require('video.js');
 require('./streamsense.4.1411.18.min');
 
 var VideoMetrix = function(player, options) {

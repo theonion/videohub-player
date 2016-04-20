@@ -4,13 +4,16 @@
 //       might be a bad thing.
 // Load up jQuery plugins
 require('succinct/jQuery.succinct');
-require('isMobile/isMobile');
+window.isMobile = require('isMobile/isMobile');
+
+// Make videojs available on window
+// The plugins we're loading expect to find it globally.
+var videojs = window.videojs = require('video.js');
 
 // Load up all our videojs plugins;
 require('videojs-vp-plugin/index');
 require('videojs-autoplay-toggle/videojs.autoplay-toggle');
 require('videojs-ga/dist/videojs.ga.js');
-require('videojs-autoplay-toggle/videojs.autoplay-toggle.js');
 
 // Requires our own code
 require('./utils/swfobject');

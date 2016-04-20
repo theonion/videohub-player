@@ -1,3 +1,4 @@
+var videojs = require('video.js');
 var _sharetools = require('./_sharetools');
 
 var ShareTools = function(player, options) {

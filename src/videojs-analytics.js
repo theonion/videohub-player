@@ -1,3 +1,5 @@
+var videojs = require('video.js');
+
 var VideoAnalytics = function(player, options) {
   if (!window.AnalyticsManager) {
     console.error('AnalyticsManager unavailable');
