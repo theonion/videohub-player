@@ -48,3 +48,13 @@ removed.
 Check the output, releasing will fail if you have a dirty git
 index or if tests fail. If the release succeeds this script will
 print out the version tag.
+
+### Release Candidates
+
+The release process never commits the `dist/` directory to master.
+The only commit that has `dist/` is the tagged commit.
+
+Before you're certain changes are production ready, release versions
+following this pattern: `major.minor.patch-rc#` (0.1.0-rc1, 0.1.0-rc2, etc.)
+
+Only when you're ready to deploy to production finalize on the non-rc version.
