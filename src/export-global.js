@@ -1,1 +1,1 @@
-this.VideoPlayer = require('./player');
+global.VideoPlayer = require('./player');
