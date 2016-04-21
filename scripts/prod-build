@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 node_modules/.bin/webpack \
-  --minimize-optimize \
+  -p \
+  --display-modules \
   --bail \
   --progress \
   --devtool sourcemap \

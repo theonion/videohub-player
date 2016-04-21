@@ -12,6 +12,7 @@ module.exports = {
     frameworks: [
       'mocha-debug',
       'mocha',
+      'bower',
     ],
 
     // list of files / patterns to load in the browser
@@ -40,7 +41,8 @@ module.exports = {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.js': ['webpack'],
+      'src/**/*.js': ['webpack'],
+      'test/**/*.js': ['webpack'],
     },
 
     // start these browsers
@@ -59,6 +61,10 @@ module.exports = {
         colors: true,
       },
     },
+
+    bowerPackages: [
+      'jquery',
+    ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

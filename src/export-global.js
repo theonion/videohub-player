@@ -1,0 +1,1 @@
+global.VideoPlayer = require('./player');

@@ -1,3 +1,4 @@
+var videojs = require('video.js');
 require('./streamsense.4.1411.18.min');
 
 var VideoMetrix = function(player, options) {
@@ -6,7 +7,7 @@ var VideoMetrix = function(player, options) {
   this.settings = $.extend(defaults, options);
 
   if (!this.settings.id) {
-    console.error('Invalid video metrics configuration.  Must contain ID');
+    console.warn('Invalid video metrics configuration.  Must contain ID');
     return;
   }
 

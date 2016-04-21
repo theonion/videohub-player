@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -e
+
+# This script:
+# * backs up dist/ to .dist/
+# * checks out HEAD as a detached head
+# * runs a production build
+# * creates a git tag based on the `version` in `package.json`
+# * pushes that tag to github
+# * checks out the branch you started on
+# * restores .dist/ to dist/
+
+mv dist/ .dist/ || true
+
+function  cleanup_at_exit {
+  secho "Resetting local checkout"
+  git checkout - --quiet
+  rm -rf dist/ || true
+  mv .dist/ dist/ || true
+}
+trap cleanup_at_exit EXIT
+
+LOG_PREFIX="[RELEASE] [$(date)]"
+function secho {
+  echo "$LOG_PREFIX $1"
+}
+
+TAG=$(cat package.json \
+  | grep version \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g' \
+  | tr -d '[[:space:]]')
+
+secho "Checking out detached HEAD"
+git checkout $(git rev-parse HEAD) --quiet
+
+secho "Running scripts/prod-build"
+scripts/prod-build
+
+secho "Adding dist to detached HEAD"
+git add -f 'dist/*'
+
+secho "Tagging and Releasing"
+git commit --allow-empty --quiet -m "production build for release tag: $TAG"
+git tag $TAG
+git push origin $TAG
+
+node_modules/.bin/onionsay "NEW VERSION: $TAG"
+
+

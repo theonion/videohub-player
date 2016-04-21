@@ -1,6 +1,6 @@
+var videojs = require('video.js');
 var sinon = require('sinon');
 var expect = require('chai').expect;
-var videojs = require('video.js');
 var TestHelper = require('./support/test_helper');
 var VideoPlayer = require('../src/player');
 
@@ -354,10 +354,9 @@ describe('VideoPlayer', function() {
     });
 
     it('mutes the player if mute is enabled', function() {
-      videoPlayer.player.volume(1);
       videoPlayer.settings.mute = true;
       videoPlayer.playerReady();
-      expect(videoPlayer.player.volume()).to.equal(0);
+      expect(videoPlayer.player.muted()).to.be.true;
     });
 
     it('hides the controlBar if mobile device', function() {
@@ -395,6 +394,7 @@ describe('VideoPlayer', function() {
 
     it('initializes message event listeners', function() {
       TestHelper.stub(videoPlayer, 'initMessageEventListeners');
+      videoPlayer.settings.embed = true;
       videoPlayer.playerReady();
       expect(videoPlayer.initMessageEventListeners.called).to.be.true;
     });

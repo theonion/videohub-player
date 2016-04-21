@@ -2,17 +2,16 @@ var webpack = require('webpack');
 var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'videohub-player': './src/export-module.js',
+    'videohub-player-global': './src/export-global.js',
+  },
   output: {
     path: './dist',
-    filename: 'videohub-player.js',
+    filename: '[name].js',
   },
   plugins: [
-    //new BowerWebpackPlugin(),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
       isMobile: 'isMobile',
       'window.isMobile': 'isMobile',
     }), 

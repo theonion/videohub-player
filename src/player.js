@@ -1,13 +1,21 @@
-require('jquery/dist/jquery');
+// TODO: We're requiring these libraries, but not doing
+//       anything with them in-place. Further, these libraries
+//       expect to find jQuery and videojs globally. This
+//       might be a bad thing.
+// Load up jQuery plugins
 require('succinct/jQuery.succinct');
-require('isMobile/isMobile');
-require('video.js/dist/video-js/video.dev');
+window.isMobile = require('isMobile/isMobile');
+
+// Make videojs available on window
+// The plugins we're loading expect to find it globally.
+var videojs = window.videojs = require('video.js');
+
+// Load up all our videojs plugins;
 require('videojs-vp-plugin/index');
 require('videojs-autoplay-toggle/videojs.autoplay-toggle');
 require('videojs-ga/dist/videojs.ga.js');
 
-var videojs = require('video.js');
-
+// Requires our own code
 require('./utils/swfobject');
 require('./loaded_metadata');
 require('./sharetools');
@@ -170,7 +178,7 @@ VideoPlayer.prototype.playerReady = function() {
   var player = this.player;
 
   if (this.settings.mute) {
-    player.volume(0);
+    player.muted(true);
   }
 
   if (isMobile.any) {
@@ -180,12 +188,13 @@ VideoPlayer.prototype.playerReady = function() {
   this.setupCustomAnalyticsPlugin();
   this.setupGoogleAnalyticsPlugin();
 
+  // We are in a transition from <iframe> to <bulbs-video> embeds
   if (this.settings.embed) {
     this.sendParentPlayerEvents();
+    this.initMessageEventListeners();
   }
 
   this.initPlayerEventListeners();
-  this.initMessageEventListeners();
 };
 
 VideoPlayer.prototype.initPlayerEventListeners = function() {
@@ -214,11 +223,14 @@ VideoPlayer.prototype.initPlayerEventListeners = function() {
     that.ignoreAutoplay = true;
   });
 
-  this.player.on('dispose', function() {
-    if (that.messageHandler) {
-      window.removeEventListener('message', that.messageHandler);
-    }
-  });
+  // We are in a transition from <iframe> to <bulbs-video> embeds
+  if (this.settings.embed) {
+    this.player.on('dispose', function() {
+      if (that.messageHandler) {
+        window.removeEventListener('message', that.messageHandler);
+      }
+    });
+  }
 };
 
 VideoPlayer.prototype.isPulseAdPlaying = function() {
@@ -314,42 +326,45 @@ VideoPlayer.prototype.handleMessagePlayWeak = function() {
   }
 };
 
-VideoPlayer.prototype.initMessageEventListeners = function() {
-  var player = this.player;
 
-  player.messageHandlers = {
-    play: this.handleMessagePlay,
-    pause: this.handleMessagePause,
-    setVolume: this.handleMessageVolume,
-    muteWeak: this.handleMessageMuteWeak,
-    pauseAllowWeakPlay: this.handleMessagePauseAllowWeakPlay,
-    playWeak: this.handleMessagePlayWeak
+// These are relevant to <iframe> embeds, not <bulbs-video> embeds
+  VideoPlayer.prototype.initMessageEventListeners = function() {
+    var player = this.player;
+
+    player.messageHandlers = {
+      play: this.handleMessagePlay,
+      pause: this.handleMessagePause,
+      setVolume: this.handleMessageVolume,
+      muteWeak: this.handleMessageMuteWeak,
+      pauseAllowWeakPlay: this.handleMessagePauseAllowWeakPlay,
+      playWeak: this.handleMessagePlayWeak
+    };
+
+    this.messageHandler = function(event) {
+      if (event.data.name in player.messageHandlers) {
+        player.messageHandlers[event.data.name](event.data.params);
+      }
+    };
+    window.addEventListener('message', this.messageHandler);
   };
 
-  this.messageHandler = function(event) {
-    if (event.data.name in player.messageHandlers) {
-      player.messageHandlers[event.data.name](event.data.params);
+  VideoPlayer.prototype.sendParentPlayerEvents = function() {
+    if (!window.parent) {
+      return;
     }
+
+    this.player.on('play', function () {
+      window.parent.postMessage({name: 'video-play'}, '*');
+    });
+
+    this.player.on('pause', function () {
+      window.parent.postMessage({name: 'video-pause'}, '*');
+    });
+
+    this.player.on('replay', function () {
+      window.parent.postMessage({name: 'video-replay'}, '*');
+    });
   };
-  window.addEventListener('message', this.messageHandler);
-};
-
-VideoPlayer.prototype.sendParentPlayerEvents = function() {
-  if (!window.parent) {
-    return;
-  }
-
-  this.player.on('play', function () {
-    window.parent.postMessage({name: 'video-play'}, '*');
-  });
-
-  this.player.on('pause', function () {
-    window.parent.postMessage({name: 'video-pause'}, '*');
-  });
-
-  this.player.on('replay', function () {
-    window.parent.postMessage({name: 'video-replay'}, '*');
-  });
-};
+// END of <iframe> relevant methods.
 
 module.exports = VideoPlayer;

@@ -1,7 +1,7 @@
+var videojs = require('video.js');
 var sinon = require('sinon');
 var expect = require('chai').expect;
 var TestHelper = require('./support/test_helper');
-var videojs = require('video.js');
 var VideoAnalytics = require('../src/videojs-analytics');
 
 describe('VideoAnalytics', function() {
