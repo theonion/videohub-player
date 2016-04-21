@@ -14,10 +14,21 @@ and then all the code in this project can fold directly into `bulbs-elements`.
 
 ## Installation
 
-This library expects some dependencies to exist globally.
+This library expects a dependencies to exist globally.
 
 * `jQuery`: We're using `2.2.x`
-* `video.js`: MUST be `video.js/dist/video-js/video.dev.js` @ `4.12.x` 
+
+
+### Notes on Build Artifacts
+In `theonion/videohub` we're requiring `dist/videohub-player-global`.
+This build sets `global.VideoPlayer = VideoPlayer`. That works with
+the expectations of `theonion/videohub`.
+
+In `theonion/bulbs-elements` we're requiring `src/player`. This way
+`bulbs-elements` bulids this code from source with webpack.
+
+After the transition period the global bulid artifact should be
+removed.
 
 ## Scripts #############
 
