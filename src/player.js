@@ -1,7 +1,11 @@
-// TODO: We're requiring these libraries, but not doing
-//       anything with them in-place. Further, these libraries
-//       expect to find jQuery and videojs globally. This
-//       might be a bad thing.
+// We're requiring these libraries, but not doing
+//   anything with them in-place. Further, these libraries
+//   expect to find jQuery and videojs globally. This
+//   might be a bad thing.
+
+// Require player css.
+require('./video-js.scss');
+
 // Load up jQuery plugins
 require('succinct/jQuery.succinct');
 window.isMobile = require('isMobile/isMobile');
