@@ -491,26 +491,62 @@ describe('VideoPlayer', function() {
       };
     });
 
-    context('pulse ad playing', function() {
-      beforeEach(function() {
-        TestHelper.stub(videoPlayer, 'isPulseAdPlaying', true);
-        videoPlayer.handleMessagePlay();
+    context('player is not visible', function () {
+      beforeEach(function () {
+        videoPlayer.player.el().style.display = 'none';
       });
 
-      it('resumes the ad', function() {
-        expect(videoPlayer.player.vpApi.resumeAd.called).to.be.true;
+
+      context('pulse ad playing', function() {
+        beforeEach(function() {
+          TestHelper.stub(videoPlayer, 'isPulseAdPlaying', true);
+          videoPlayer.handleMessagePlay();
+        });
+
+        it('does not resume the ad', function() {
+          expect(videoPlayer.player.vpApi.resumeAd.called).to.be.false;
+        });
+      });
+
+      context('pulse ad not playing', function() {
+        beforeEach(function() {
+          TestHelper.stub(videoPlayer, 'isPulseAdPlaying', false);
+          TestHelper.stub(videoPlayer.player, 'play');
+          videoPlayer.handleMessagePlay();
+        });
+
+        it('does not resume the content', function() {
+          expect(videoPlayer.player.play.called).to.be.false;
+        });
       });
     });
 
-    context('pulse ad not playing', function() {
-      beforeEach(function() {
-        TestHelper.stub(videoPlayer, 'isPulseAdPlaying', false);
-        TestHelper.stub(videoPlayer.player, 'play');
-        videoPlayer.handleMessagePlay();
+    context('player is visible', function () {
+      beforeEach(function () {
+        videoPlayer.player.el().style.display = 'block';
       });
 
-      it('resumes the content', function() {
-        expect(videoPlayer.player.play.called).to.be.true;
+      context('pulse ad playing', function() {
+        beforeEach(function() {
+          TestHelper.stub(videoPlayer, 'isPulseAdPlaying', true);
+          videoPlayer.handleMessagePlay();
+        });
+
+        it('resumes the ad', function() {
+          expect(videoPlayer.player.vpApi.resumeAd.called).to.be.true;
+        });
+      });
+
+      context('pulse ad not playing', function() {
+        beforeEach(function() {
+          TestHelper.stub(videoPlayer, 'isPulseAdPlaying', false);
+          TestHelper.stub(videoPlayer.player, 'play');
+          videoPlayer.handleMessagePlay();
+        });
+
+        it('resumes the content', function() {
+          expect(videoPlayer.player.play.called).to.be.true;
+        });
       });
     });
   });
@@ -741,6 +777,34 @@ describe('VideoPlayer', function() {
         expect(videoPlayer.handleMessagePlayWeak.called).to.be.true;
         done();
       }, 50);
+    });
+  });
+
+  describe('#playerVisible', function () {
+    beforeEach(function () {
+      videoPlayer = new VideoPlayer(videoDiv, {
+        videoId: 3237,
+      });
+    });
+
+    context('player is visible', function () {
+      beforeEach(function () {
+        videoPlayer.player.el().style.display ='block';
+      });
+
+      it('is true', function () {
+        expect(videoPlayer.playerVisible()).to.be.true;
+      });
+    });
+
+    context('player is not visible', function () {
+      beforeEach(function () {
+        videoPlayer.player.el().style.display ='none';
+      });
+
+      it('is false', function () {
+        expect(videoPlayer.playerVisible()).to.be.false;
+      });
     });
   });
 });
