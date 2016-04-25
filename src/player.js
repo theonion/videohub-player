@@ -198,7 +198,7 @@ VideoPlayer.prototype.playerReady = function() {
 };
 
 VideoPlayer.prototype.playerVisible = function() {
-  return jQuery(this.player.el()).is(':visible');
+  return $(this.player.el()).is(':visible');
 };
 
 VideoPlayer.prototype.initPlayerEventListeners = function() {
