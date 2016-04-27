@@ -120,6 +120,8 @@ EndCard.prototype.displayShareTools = function() {
 };
 
 EndCard.prototype.endcardFetched = function(endCardMarkup) {
+  var playerElement = this.player.el();
+
   if (this.$overlay) {
     return;
   }
@@ -145,9 +147,11 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
 
   this.displayShareTools();
 
-  this.player.el().appendChild(this.$overlay[0]);
+  playerElement.appendChild(this.$overlay[0]);
 
-  $('.sharetool').appendTo('.ec-social').show();
+  var $shareTool = $(playerElement).find('.sharetool');
+  var $endcardShareContainer = $(playerElement).find('.ec-social');
+  $shareTool.appendTo($endcardShareContainer).show();
 
   this.player.controlBar.hide();
   window.picturefill(document.querySelectorAll('.endcard [data-type="image"]'));

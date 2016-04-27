@@ -1,3 +1,7 @@
+# 0.1.2
+
+- Fix duplicate sharetools buttons on multiple video plays
+
 # 0.1.1
 
 Modified `window.postMessage` `play` handler to check if the player is visible.
