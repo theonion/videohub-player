@@ -1,7 +1,7 @@
 {
   "name": "videohub-player",
   "description": "Onion videohub player code.",
-  "main": "dist/videohub-player.js",
+  "main": "dist/videohub-player-global.js",
   "authors": [
     "Collin Miller (Zardulist) <collintmiller@gmail.com>"
   ],
