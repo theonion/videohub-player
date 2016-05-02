@@ -201,6 +201,10 @@ VideoPlayer.prototype.playerReady = function() {
   this.initPlayerEventListeners();
 };
 
+VideoPlayer.prototype.playerVisible = function() {
+  return $(this.player.el()).is(':visible');
+};
+
 VideoPlayer.prototype.initPlayerEventListeners = function() {
   var that = this;
 
@@ -243,6 +247,10 @@ VideoPlayer.prototype.isPulseAdPlaying = function() {
 
 VideoPlayer.prototype.handleMessagePlay = function() {
   if (!this.player.el()) {
+    return;
+  }
+
+  if (!this.playerVisible()) {
     return;
   }
 
