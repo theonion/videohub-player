@@ -170,12 +170,15 @@ VideoPlayer.prototype.setupCustomAnalyticsPlugin = function() {
 };
 
 VideoPlayer.prototype.setupGoogleAnalyticsPlugin = function() {
-  this.player.ga({
+  var defaultConfig = {
+    gaPrefix: this.settings.pluginConfig.ga.gaPrefix,
     eventActionPrefix: 'video_',
     percentsPlayedInterval: 25,
     eventCategory: 'Video:' + window.channelName,
     eventLabel: window.videoUrl
-  });
+  };
+  var gaConfig = this.settings.pluginConfig.ga || {};
+  this.player.ga(Object.assign(defaultConfig, gaConfig));
 };
 
 VideoPlayer.prototype.playerReady = function() {
