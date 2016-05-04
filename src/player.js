@@ -171,7 +171,6 @@ VideoPlayer.prototype.setupCustomAnalyticsPlugin = function() {
 
 VideoPlayer.prototype.setupGoogleAnalyticsPlugin = function() {
   var defaultConfig = {
-    gaPrefix: this.settings.pluginConfig.ga.gaPrefix,
     eventActionPrefix: 'video_',
     percentsPlayedInterval: 25,
     eventCategory: 'Video:' + window.channelName,

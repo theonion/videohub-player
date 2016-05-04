@@ -24,18 +24,40 @@ describe('ShareTools', function() {
   });
 
   describe('#prepareOverlay', function() {
-    beforeEach(function() {
-      window.shareUrl = 'http://karma.com';
-      window.share_description = 'This video';
-      window.share_title = 'This title of a video';
-      shareTools = new ShareTools(player, {});
+    context('with global settings', function() {
+      beforeEach(function() {
+        window.shareUrl = 'http://karma.com';
+        window.share_description = 'This video';
+        window.share_title = 'This title of a video';
+        shareTools = new ShareTools(player, {});
+      });
+
+      it('sets up an overlay div', function() {
+        var $overlay = shareTools.prepareOverlay();
+        expect($overlay.data('shareTitle')).to.equal('This title of a video');
+        expect($overlay.data('shareDescription')).to.equal('This video');
+        expect($overlay.data('shareUrl')).to.equal('http://karma.com');
+      });
     });
 
-    it('sets up an overlay div', function() {
-      var $overlay = shareTools.prepareOverlay();
-      expect($overlay.data('shareTitle')).to.equal('This title of a video');
-      expect($overlay.data('shareDescription')).to.equal('This video');
-      expect($overlay.data('shareUrl')).to.equal('http://karma.com');
+    context('with configured settings', function() {
+      beforeEach(function() {
+        delete window.shareUrl;
+        delete window.share_description;
+        delete window.share_title;
+        shareTools = new ShareTools(player, {
+          shareTitle: 'Example title of a video',
+          shareDescription: 'Example video',
+          shareUrl: 'http://example.org',
+        });
+      });
+
+      it('sets up an overlay div', function() {
+        var $overlay = shareTools.prepareOverlay();
+        expect($overlay.data('shareTitle')).to.equal('Example title of a video');
+        expect($overlay.data('shareDescription')).to.equal('Example video');
+        expect($overlay.data('shareUrl')).to.equal('http://example.org');
+      });
     });
   });
 

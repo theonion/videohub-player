@@ -13,9 +13,9 @@ ShareTools.prototype.prepareOverlay = function() {
   $overlay.addClass('sharetool share-widget');
 
   $overlay.attr({
-    'data-share-url': window.shareUrl,
-    'data-share-description': window.share_description,
-    'data-share-title': window.share_title,
+    'data-share-url': this.settings.shareUrl || window.shareUrl,
+    'data-share-description': this.settings.shareDescription  || window.share_description,
+    'data-share-title': this.settings.shareTitle || window.share_title,
     'data-share-redirect-url': 'http://www.onionstudios.com/fb-close'
   });
 
