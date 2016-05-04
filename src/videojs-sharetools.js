@@ -35,7 +35,7 @@ ShareTools.prototype.setupTwitter = function($shareToolDiv) {
       var queryParams = {
         text: text,
         url: params.url,
-        via: window.twitter_handle
+        via: this.settings.twitterHandle || window.twitter_handle,
       };
       var serializedParams = decodeURIComponent($.param(queryParams));
       return 'https://www.twitter.com/share?' + serializedParams;
