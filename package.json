@@ -1,6 +1,6 @@
 {
   "name": "videohub-player",
-  "version": "0.2.0-rc6",
+  "version": "0.2.0-rc7",
   "description": "Onion videohub player code.",
   "main": "src/player.js",
   "scripts": {
