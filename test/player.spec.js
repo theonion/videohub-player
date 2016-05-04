@@ -41,10 +41,10 @@ describe('VideoPlayer', function() {
         pluginConfig: {
           vpbc: {
             optional: {
-              flashEnabled: true
-            }
-          }
-        }
+              flashEnabled: true,
+            },
+          },
+        },
       });
     });
 

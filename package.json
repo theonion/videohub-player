@@ -1,6 +1,6 @@
 {
   "name": "videohub-player",
-  "version": "0.1.4",
+  "version": "0.2.0-rc7",
   "description": "Onion videohub player code.",
   "main": "src/player.js",
   "scripts": {
@@ -13,6 +13,8 @@
   "devDependencies": {
     "bower-webpack-plugin": "^0.1.9",
     "chai": "^3.5.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "karma": "^0.13.22",
     "karma-bower": "^1.0.1",
     "karma-browserstack-launcher": "^0.1.11",
@@ -25,8 +27,12 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "node-sass": "^3.5.3",
     "onionsay": "github:theonion/onionsay",
+    "postcss-loader": "^0.8.2",
+    "sass-loader": "^3.2.0",
     "sinon": "^2.0.0-pre",
+    "style-loader": "^0.13.1",
     "webpack": "^1.12.14"
   }
 }

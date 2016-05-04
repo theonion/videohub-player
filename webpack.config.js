@@ -1,5 +1,14 @@
-var webpack = require('webpack');
-var BowerWebpackPlugin = require('bower-webpack-plugin');
+'use strict'; // eslint-disable-line
+
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const styleExtractor = new ExtractTextPlugin('[name].css');
+
+const includeDirs = [
+  path.join(__dirname, 'src'),
+];
 
 module.exports = {
   entry: {
@@ -10,12 +19,24 @@ module.exports = {
     path: './dist',
     filename: '[name].js',
   },
+  module: {
+    loaders: [{
+      match: /\.scss$/,
+      test: /\.scss$/,
+      loader: styleExtractor.extract(
+        'style-loader',
+        'css-loader!postcss-loader!sass-loader'
+      ),
+      include: includeDirs,
+    }],
+  },
   plugins: [
     new webpack.ProvidePlugin({
       isMobile: 'isMobile',
       'window.isMobile': 'isMobile',
-    }), 
-  ],  
+    }),
+    styleExtractor,
+  ],
   resolve: {
     modulesDirectories: [
       'node_modules',
