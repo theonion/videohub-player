@@ -1,4 +1,4 @@
-# 0.1.4
+# 0.1.5
 
 Included the latest videojs-ga that allows for prefixing with
  tracker names.
@@ -9,6 +9,7 @@ Included the latest videojs-ga that allows for prefixing with
 new VidePlayer(videoEl, { pluginConfig: { ga: { gaPrefix: 'trackerpreifx' } });
 ```
 
+# 0.1.4
 # 0.1.3
 
 * BAD BUILD *

@@ -165,7 +165,12 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
   $shareTool.appendTo($endcardShareContainer).show();
 
   this.player.controlBar.hide();
-  window.picturefill(document.querySelectorAll('.endcard [data-type="image"]'));
+  if (window.picturefill) {
+    window.picturefill(document.querySelectorAll('.endcard [data-type="image"]'));
+  }
+  else {
+    console.warn('videohub-player could not find `window.picturefill`');
+  }
 };
 
 EndCard.prototype.pathInfo = function() {
