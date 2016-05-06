@@ -152,8 +152,6 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
 
   if (this.settings.allowCountdown) {
     this.setupCountdown();
-  } else {
-    this.$overlay.find('.next-video-container a').attr('target','_blank');
   }
 
   this.displayShareTools();
