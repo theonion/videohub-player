@@ -28,7 +28,7 @@ var overlay = '<div  class="endcard">\
   </ul>\
   <div id="next-video">\
 \
-<a href="/videos/candidate-profile-rick-santorum-3739" \data-track-label="/videos/candidate-profile-rick-santorum-3739">\
+<a href="/videos/candidate-profile-rick-santorum-3739" \data-track-label="/videos/candidate-profile-rick-santorum-3739" data-video-id="3739">\
   <figure>\
     <div class="aspect-holder">\
       <img src="http://i.onionstatic.com/\onionstudios/4525/16x9/600.jpg" alt="" />\

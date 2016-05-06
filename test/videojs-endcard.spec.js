@@ -437,6 +437,22 @@ describe('EndCard', function() {
     });
   });
 
+  describe('#replaceEndCardUrl', function() {
+    var endCard;
+
+    beforeEach(function() {
+      endCard = new EndCard(playerStub);
+      endCard.$overlay = $(sampleOverlay);
+      endCard.replaceEndCardUrl();
+    });
+
+    it('replaces the URL', function() {
+      var $url = endCard.$overlay.find('a');
+      var videoId = $url.data('video-id');
+      expect($url.attr('href')).to.equal('/v/' + videoId);
+    });
+  });
+
   describe('#endcardFetched', function() {
     var endCard;
 
@@ -446,10 +462,15 @@ describe('EndCard', function() {
         TestHelper.stub(endCard, 'setupReplay');
         TestHelper.stub(endCard, 'displayShareTools');
         TestHelper.stub(endCard, 'setupCountdown');
+        TestHelper.stub(endCard, 'replaceEndCardUrl');
         TestHelper.stub(endCard.player.controlBar, 'hide');
         TestHelper.stub(endCard.player.posterImage, 'show');
         TestHelper.stub(window, 'picturefill');
         endCard.endcardFetched(sampleOverlay);
+      });
+
+      it('replaces the end card URL with the /v/ shorthand URL', function() {
+        expect(endCard.replaceEndCardUrl.called).to.be.true;
       });
 
       it('shows the poster image', function() {

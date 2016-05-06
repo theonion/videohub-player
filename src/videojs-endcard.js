@@ -119,6 +119,15 @@ EndCard.prototype.displayShareTools = function() {
   }
 };
 
+EndCard.prototype.replaceEndCardUrl = function() {
+  var endCardUrl = this.$overlay.find('a');
+  var videoId = endCardUrl.data('video-id');
+
+  if (videoId) {
+    endCardUrl.attr('href', '/v/' + videoId);
+  }
+};
+
 EndCard.prototype.endcardFetched = function(endCardMarkup) {
   var playerElement = this.player.el();
 
@@ -131,6 +140,8 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
   }
 
   this.$overlay = $(endCardMarkup);
+
+  this.replaceEndCardUrl();
 
   this.setupReplay();
 
