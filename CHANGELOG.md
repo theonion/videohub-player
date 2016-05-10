@@ -1,3 +1,11 @@
+# 1.0.0
+
+Supported the redirect v/<video id>
+
+Added videohub player css
+
+Stopped player from opening new window on endcard links
+
 # 0.1.5
 
 Included the latest videojs-ga that allows for prefixing with
