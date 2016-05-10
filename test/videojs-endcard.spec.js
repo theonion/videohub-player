@@ -539,10 +539,6 @@ describe('EndCard', function() {
         TestHelper.stub(endCard, 'setupCountdown');
         endCard.endcardFetched(sampleOverlay);
       });
-
-      it('makes the next video link open in a new window', function() {
-        expect(endCard.$overlay.find('.next-video-container a').attr('target')).to.equal('_blank');
-      });
     });
   });
 });
