@@ -1,0 +1,162 @@
+///////////////////////////
+// ********************* //
+//    Video JS Styles    //
+// ********************* //
+///////////////////////////
+
+$bold: 700;
+
+.player {
+  //Force 16:9 ratio
+  .video-js {
+    height: 0!important;
+    width: 100%!important;
+    padding-top: 56.25%;
+    // No sharetool during ad playback
+    &.vjs-ad-playing {
+      .sharetool  {
+        display: none!important;
+      }
+    }
+  }
+  .vjs-fullscreen {
+    height: 100%!important;
+    padding-top: 0;
+  }
+  //Control bar styles
+  //always show
+  .vjs-control-bar {
+    background: black;
+    color: white;
+    opacity: 1;
+  }
+  //Give some padding to
+  //time readouts
+  .vjs-current-time,
+  .vjs-duration {
+    font-weight: $bold;
+    width: 3rem;
+  }
+  //Bump size of time
+  .vjs-time-controls {
+    font-size: 1.2rem;
+    line-height: 3.2rem;
+  }
+  //Time divider
+  .vjs-time-divider {
+    font-size: 1.2rem;
+    line-height: 3.2rem;
+    margin: 0 .5rem;
+  }
+  //Inline play button
+  .vjs-play-control {
+    width: 2.5rem;
+    left: .4rem;
+    margin-right: .5rem;
+  }
+  //Remove seek and volume icons
+  //just use plain ol' bars
+  .vjs-seek-handle,
+  .vjs-volume-handle {
+    &:before {
+      content: '';
+      text-shadow: 0 0 .1em #333;
+    }
+  }
+  //Progress and volume bars
+  .vjs-play-progress,
+  .vjs-volume-level {
+    background: #e8e8e8
+  }
+  //Disable shrinking of progress bar
+  .vjs-control-bar .vjs-progress-control {
+    font-size: 1.5rem;
+  }
+  //Autoplay Plugin
+  .vjs-autoplay-toggle-button {
+    div .vjs-control-text {
+      font-weight: $bold;
+      line-height: 1.1rem;
+    }
+    display: none;
+  }
+  //Remove hover state glow
+  //on big button
+  .vjs-default-skin {
+    &:hover {
+      .vjs-big-play-button {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+   //Preroll Skip Button
+  .videojs-ads-info {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    color: white;
+    font-style: normal;
+    font-weight: $bold;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: auto;
+    background-color: #000;
+    line-height: 12px;
+    padding: 10px;
+    z-index: 2;
+    display: none;
+    border-radius: 8px;
+    margin-right: 8px;
+    opacity: 0.75;
+    font-size: 10px;
+
+    &.enabled {
+      display: block;
+    }
+
+    a, a:hover, a:visited {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+      padding-left: 20px;
+      display: none;
+
+      &.enabled {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 400px) {
+  .player {
+    .vjs-autoplay-toggle-button {
+      display: block;
+    }
+
+    .videojs-ads-info {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#sticky-theater.sticky-theater-active {
+  .videojs-ads-info {
+    font-size: 9px;
+  }
+}
+
+// TODO : override onion full screen button until fix conflicts with reading list
+.onion .player {
+  .vjs-volume-control {
+    padding-right: 15px;
+    width: 6em;
+  }
+  .vjs-fullscreen-control {
+    display: none;
+  }
+}

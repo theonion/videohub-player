@@ -13,9 +13,9 @@ ShareTools.prototype.prepareOverlay = function() {
   $overlay.addClass('sharetool share-widget');
 
   $overlay.attr({
-    'data-share-url': window.shareUrl,
-    'data-share-description': window.share_description,
-    'data-share-title': window.share_title,
+    'data-share-url': this.settings.shareUrl || window.shareUrl,
+    'data-share-description': this.settings.shareDescription  || window.share_description,
+    'data-share-title': this.settings.shareTitle || window.share_title,
     'data-share-redirect-url': 'http://www.onionstudios.com/fb-close'
   });
 
@@ -27,6 +27,7 @@ ShareTools.prototype.setupTwitter = function($shareToolDiv) {
     return;
   }
 
+  var twitterHandle = this.settings.twitterHandle || window.twitter_handle;
   this.shareTools.addNetwork({
     name: 'twitter',
     url: function (params, element) {
@@ -35,7 +36,7 @@ ShareTools.prototype.setupTwitter = function($shareToolDiv) {
       var queryParams = {
         text: text,
         url: params.url,
-        via: window.twitter_handle
+        via: twitterHandle,
       };
       var serializedParams = decodeURIComponent($.param(queryParams));
       return 'https://www.twitter.com/share?' + serializedParams;

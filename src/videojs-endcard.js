@@ -119,6 +119,15 @@ EndCard.prototype.displayShareTools = function() {
   }
 };
 
+EndCard.prototype.replaceEndCardUrl = function() {
+  var endCardUrl = this.$overlay.find('a');
+  var videoId = endCardUrl.data('video-id');
+
+  if (videoId) {
+    endCardUrl.attr('href', '/v/' + videoId);
+  }
+};
+
 EndCard.prototype.endcardFetched = function(endCardMarkup) {
   var playerElement = this.player.el();
 
@@ -132,6 +141,8 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
 
   this.$overlay = $(endCardMarkup);
 
+  this.replaceEndCardUrl();
+
   this.setupReplay();
 
   // Don't do countdown if embed or if it is the rail player
@@ -141,8 +152,6 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
 
   if (this.settings.allowCountdown) {
     this.setupCountdown();
-  } else {
-    this.$overlay.find('.next-video-container a').attr('target','_blank');
   }
 
   this.displayShareTools();
@@ -154,7 +163,12 @@ EndCard.prototype.endcardFetched = function(endCardMarkup) {
   $shareTool.appendTo($endcardShareContainer).show();
 
   this.player.controlBar.hide();
-  window.picturefill(document.querySelectorAll('.endcard [data-type="image"]'));
+  if (window.picturefill) {
+    window.picturefill(document.querySelectorAll('.endcard [data-type="image"]'));
+  }
+  else {
+    console.warn('videohub-player could not find `window.picturefill`');
+  }
 };
 
 EndCard.prototype.pathInfo = function() {
