@@ -140,7 +140,9 @@
       name: 'facebook',
       url: function (params, element) {
         var ps = {
-          app_id: '632832353489701',
+          // Attempt to use host property's FB App ID, else default to OS FB App ID.
+          // Not wonderful but this player just needs to limp along until replacement.
+          app_id: $('meta[property="fb:app_id"]').attr('content') || '632832353489701',
           display: 'popup',
           link: params.url,
           name: params.title,
