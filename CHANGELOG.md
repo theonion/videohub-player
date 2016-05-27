@@ -1,3 +1,7 @@
+# 1.0.1
+
+- Sharetools attempts to use property's FB App ID (via *meta* tag)
+
 # 1.0.0
 
 Supported the redirect v/<video id>
